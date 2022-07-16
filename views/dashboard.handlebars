@@ -1,0 +1,53 @@
+{{!-- Display Single Blog Post --}}
+
+<header id="dashboard">
+    <h1>{{user.username}}'s Dashboard </h1>
+</header>
+<div id="subNav">
+    <button id="new-btn" class="hvr-icon-float">New Post <i class="fa fa-plus-square-o hvr-icon"
+            aria-hidden="true"></i></button>
+</div>
+<section>
+    {{#if hasItems}}
+    {{!-- For Each Loop --}}
+    <div class="eachBlog">
+        {{#each blog}}
+        {{> myBlogs}}
+        {{/each}}
+    </div>
+    {{else}}
+    <div id="no-posts">
+        <h1>You have no Blog Posts</h1>
+        <p>Click 'New Post' above to create your first Blog Post!</p>
+    </div>
+    {{/if}}
+</section>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <h1 id="modalTitle"> Create New Blog Post </h1>
+        </div>
+        <div class="modal-header">
+            {{!-- <label for="blogTitle" id="createTitle">Title</label> --}}
+            <input class="contentModal" type="text" id="blogTitle" placeholder="Title" />
+        </div>
+        <div class="modal-header">
+            {{!-- <label for="blogContent" id="createContent">Content</label> --}}
+            <textarea class="contentModal" id="blogContent"
+                placeholder="What's on your mind, {{user.username}}?"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button data-id="{{user.user_id}}" type="submit" id="create-btn">Create Post</button>
+            <button type="cancel" id="cancel-btn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+{{!-- Script --}}
+<script src="/js/newBlog.js"></script>

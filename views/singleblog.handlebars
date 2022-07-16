@@ -1,0 +1,80 @@
+{{!-- Display Single Blog Post --}}
+
+{{!-- EDIT/Update --}}
+<header id="dashboard">
+    <h1> {{blog.blog_title}} </h1>
+</header>
+<div id="subNav">
+    <button id="addComment-btn" class="hvr-icon-float">Comment <i class="fa fa-commenting-o hvr-icon"
+            aria-hidden="true"></i></button>
+    {{#if isowner}}
+    <button id="edit-btn" class="hvr-icon-float">Edit Post <i class="fa fa-pencil-square-o hvr-icon"
+            aria-hidden="true"></i></button>
+    <button data-id="{{blog.blog_id}}" type="delete" id="delete-btn" class="hvr-icon-float">Delete Post <i
+            class="fa fa-trash-o hvr-icon" aria-hidden="true"></i></button>
+</div>
+{{/if}}
+</div>
+
+<main id="userPost">
+    <div class="singleBlog">
+        <p class="username">{{blog.user.username}} Posted:</p>
+        <p class="datePosted">{{blog.blog_post_date}}</p>
+        <p class="blogContent">{{blog.blog_content}}</p>
+    </div>
+</main>
+
+<section id="comments">
+    {{#each comment}}
+    {{> commentBlog}}
+    {{/each}}
+</section>
+
+<!-- Edit Post Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <h1 id="modalTitle"> Edit Post </h1>
+            <input class="contentModal" type="text" id="blogTitle" value="{{blog.blog_title}}" />
+        </div>
+        <div class="modal-header">
+            <textarea class="contentModal" type="text" id="blogContent">{{blog.blog_content}}</textarea>
+        </div>
+        <div class="modal-footer">
+            <button data-id="{{blog.blog_id}}" type="submit" id="update-btn">Update</button>
+            <button type="cancel" id="cancel-btn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- Comment Modal -->
+<div id="commentModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="commentClose">&times;</span>
+        <div class="modal-header">
+            <h1 id="modalCommentTitle"> Add Comment </h1>
+        </div>
+        <div class="modal-header">
+            <textarea class="contentModal" type="text" id="commentContent"
+                placeholder="What's on your mind, {{blog.user.username}}?"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button data-id="{{blog.blog_id}}" type="submit" id="comment-btn">Comment</button>
+            <button type="cancel" id="cancel-btn2">Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+{{!-- Script --}}
+<script src="/js/addComment.js"></script>
+
+{{#if isowner}}
+<script src="/js/delBlog.js"></script>
+<script src="/js/updateBlog.js"></script>
+{{/if}}
