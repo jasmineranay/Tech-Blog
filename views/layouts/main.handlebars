@@ -1,0 +1,61 @@
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Tech Blog</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/91ed65ac39.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  {{! this is the main html file wrapper for all your views }}
+  <header>
+    <div class="nav-title">
+      <h1><a href="/" id="logo"> TECHBLOG </a></h1>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+
+    <div class="nav-links">
+      <a href="/" class="hvr-icon-float">Home <img src="../images/icons/navbar/akar-icons_home.png"
+          alt="home-button icon" class="hvr-icon"></a>
+      <a href="/dashboard" class="hvr-icon-float">Dashboard <i class="fa fa-address-card-o hvr-icon"
+          aria-hidden="true"></i></a>
+      {{#if logged_in}}
+      <a id="logout-btn" class="hvr-icon-up">Logout <img src="../images/icons/navbar/ri_logout-circle-line.png"
+          alt="logout icon" class="hvr-icon"></a>
+      {{else}}
+      <a id="login-btn" href="/login" class="hvr-icon-float">Login <img src="../images/icons/navbar/login-icon.png"
+          alt="login icon" class="hvr-icon"></a>
+      {{/if}}
+    </div>
+  </nav>
+
+  {{! placeholder for where the view will be injected }}
+  <div>
+    {{{body}}}
+  </div>
+
+</body>
+{{! placeholder for where the view will be injected }}
+{{#if logged_in}}
+<script src="/js/logout.js"></script>
+{{!--
+<script src="../../controllers/cartHandlebar.js"></script> --}}
+{{/if}}
+<script src="/js/appendContent.js"></script>
+
+</html>
